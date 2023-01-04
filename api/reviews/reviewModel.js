@@ -16,6 +16,6 @@ ReviewSchema.statics.findByMovieId = function (movieId) {
   return this.findOne({ movieId: movieId });
 };
 
-
+  
 
 export default mongoose.model('Review', ReviewSchema);
