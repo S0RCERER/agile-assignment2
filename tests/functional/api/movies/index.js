@@ -7,6 +7,8 @@ import movies from "../../../../seedData/movies";
 
 const expect = chai.expect;
 let db;
+let token;
+let page;
 
 describe("Movies endpoint", () => {
   before(() => {
@@ -74,4 +76,74 @@ describe("Movies endpoint", () => {
       });
     });
   });
+
+describe("GET /api/movies/tmdb/upcoming/:page", () => {
+  before(() => {
+    token = "BEARER eyJhbGciOiJIUzI1NiJ9.dXNlcjE.FmYria8wq0aFDHnzYWhKQrhF5BkJbFNN1PqNyNQ7V4M"
+  })
+  describe("when the page number is valid", () => {
+    before(() => {
+      page = 1
+    })
+    it("should return 20 movies of corresponding page from tmdb and a status 200", () => {
+      return request(api)
+        .get(`/api/movies/tmdb/upcoming/${page}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.have.property("page", page);
+          expect(res.body.results).to.be.a("array");
+          expect(res.body.results.length).to.equal(20);
+        });
+    });
+  });
+  describe("when the page number is invalid", () => {
+    before(() => {
+      page = 0
+    })
+    it("should return a empty result", () => {
+      return request(api)
+        .get(`/api/movies/tmdb/upcoming/${page}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect({});
+    });
+  });
+});
+
+describe("GET /api/movies/tmdb/topRated/:page", () => {
+  before(() => {
+    token = "BEARER eyJhbGciOiJIUzI1NiJ9.dXNlcjE.FmYria8wq0aFDHnzYWhKQrhF5BkJbFNN1PqNyNQ7V4M"
+  })
+  describe("when the page number is valid", () => {
+    before(() => {
+      page = 1
+    })
+    it("should return 20 movies of corresponding page from tmdb and a status 200", () => {
+      return request(api)
+        .get(`/api/movies/tmdb/upcoming/${page}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.have.property("page", page);
+          expect(res.body.results).to.be.a("array");
+          expect(res.body.results.length).to.equal(20);
+        });
+    });
+  });
+  describe("when the page number is invalid", () => {
+    before(() => {
+      page = 0
+    })
+    it("should return a empty result", () => {
+      return request(api)
+        .get(`/api/movies/tmdb/toprated/${page}`)
+        .set("Accept", "application/json")
+        .set("Authorization", token)
+        .expect({});
+    });
+  });
+});
 });
