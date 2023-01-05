@@ -182,8 +182,9 @@ NOTE: Your test code should only contain the test cases you implemented. You mus
 ​
 I choose option b
 coveralls:https://coveralls.io/gitlab/S0RCERER/agile-assignment2
-
+[![Coverage Status](https://coveralls.io/repos/gitlab/S0RCERER/agile-assignment2/badge.svg?branch=develop)](https://coveralls.io/gitlab/S0RCERER/agile-assignment2?branch=develop)
 ## Related Links
 github:https://github.com/S0RCERER/agile-assignment2
 gitlab:https://gitlab.com/S0RCERER/agile-assignment2/-/pipelines
-​
+​heroku staging:https://lingfeng-assignment2-staging.herokuapp.com/
+heroku production:https://lingfeng-ca2-production.herokuapp.com/
